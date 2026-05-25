@@ -148,10 +148,14 @@ if df is not None and st.button("开始自动排版"):
                     fontsize=3
                 )
 
-            ax.set_title(f"Sheet {sheet_id} - {SHEET_W}×{SHEET_H}mm")
-            ax.set_xlabel("Width / mm")
-            ax.set_ylabel("Length / mm")
+            ax.set_title(
+                f"Sheet {sheet_id} - {SHEET_W}×{SHEET_H}mm",
+                fontsize=7
+            )
+            ax.set_xlabel("Width / mm", fontsize=5)
+            ax.set_ylabel("Length / mm", fontsize=5)
 
+            ax.tick_params(axis='both', labelsize=4)
             st.pyplot(fig)
 
         layout_df = pd.DataFrame(all_layout)
