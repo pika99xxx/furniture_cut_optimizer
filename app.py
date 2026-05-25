@@ -160,8 +160,8 @@ if df is not None and st.button("开始自动排版"):
 
         output = layout_df.to_csv(index=False).encode("utf-8-sig")
         st.download_button(
-            "下载切割坐标 CSV",
-            output,
-            file_name="cutting_layout.csv",
-            mime="text/csv"
-        )
+    "下载切割坐标 CSV",
+    csv_data,
+    file_name="cutting_layout.csv",
+    mime="text/csv"
+)
