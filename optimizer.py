@@ -27,33 +27,21 @@ def expand_parts(df):
 
 
 def optimize_group(parts, kerf=3):
-    """
-    parts: 同一木纹组 / 同一厚度 / 同一材质的板件
-    kerf: 锯缝，默认 3mm
-    """
-
     packer = newPacker(rotation=True)
 
     for p in parts:
         w = p["w"] + kerf
         h = p["h"] + kerf
-
-        # 如果不可旋转，则 rectpack 本身不好单独控制
-        # 第一版先通过 rotation=True 做快速 MVP
-        # 第二版再改成自研 MaxRects 支持单件旋转控制
         packer.add_rect(w, h, rid=p["id"])
 
-    # 先预设最多 50 张原材料板
-    for i in range(50):
+    for _ in range(50):
         packer.add_bin(SHEET_W, SHEET_H)
 
     packer.pack()
 
     result = []
-    used_bins = set()
 
-    for abin in packer:
-        bin_index = abin.bid
+    for sheet_no, abin in enumerate(packer, start=1):
         for rect in abin:
             x, y, w, h = rect.x, rect.y, rect.width, rect.height
             rid = rect.rid
@@ -61,7 +49,7 @@ def optimize_group(parts, kerf=3):
             original = next(p for p in parts if p["id"] == rid)
 
             result.append({
-                "sheet_index": bin_index + 1,
+                "sheet_index": sheet_no,
                 "part_id": rid,
                 "part_name": original["name"],
                 "x": x,
@@ -74,8 +62,6 @@ def optimize_group(parts, kerf=3):
                 "material": original["material"],
                 "thickness": original["thickness"]
             })
-
-            used_bins.add(bin_index + 1)
 
     return result
 
