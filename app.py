@@ -154,14 +154,17 @@ if df is not None and st.button("开始自动排版"):
 
             st.pyplot(fig)
 
-        layout_df = pd.DataFrame(layout)
-        st.subheader("切割坐标明细")
-        st.dataframe(layout_df)
+        layout_df = pd.DataFrame(all_layout)
 
-        output = layout_df.to_csv(index=False).encode("utf-8-sig")
-        st.download_button(
+st.subheader("3. 切割坐标明细")
+st.dataframe(layout_df)
+
+csv_data = layout_df.to_csv(index=False).encode("utf-8-sig")
+
+st.download_button(
     "下载切割坐标 CSV",
     csv_data,
     file_name="cutting_layout.csv",
-    mime="text/csv"
+    mime="text/csv",
+    key="download_cutting_layout_csv"
 )
