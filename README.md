@@ -10,7 +10,7 @@
 
 ## 在线使用
 
-https://你的streamlit地址.streamlit.app
+https://furniturecutoptimizer-vvc6hyytqxldpnamnoevoo.streamlit.app/
 
 ## Excel 格式
 
