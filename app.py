@@ -118,7 +118,7 @@ if df is not None and st.button("开始自动排版"):
 
             st.markdown(f"### 第 {sheet_id} 张板｜利用率 {sheet['utilization']}%")
 
-            fig, ax = plt.subplots(figsize=(3, 6))
+            fig, ax = plt.subplots(figsize=(1.5, 3))
 
             ax.set_xlim(0, SHEET_W)
             ax.set_ylim(0, SHEET_H)
