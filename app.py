@@ -145,7 +145,7 @@ if df is not None and st.button("开始自动排版"):
                     f'{item["part_name"]}\n{item["w"]}×{item["h"]}',
                     ha="center",
                     va="center",
-                    fontsize=7
+                    fontsize=4
                 )
 
             ax.set_title(f"Sheet {sheet_id} - {SHEET_W}×{SHEET_H}mm")
